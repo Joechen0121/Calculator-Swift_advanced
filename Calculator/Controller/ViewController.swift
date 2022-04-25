@@ -34,30 +34,15 @@ class ViewController: UIViewController {
         isFinishedTypingNumber = true
         
         if let calcMethod = sender.currentTitle {
-            print(calcMethod)
             
-            switch calcMethod {
-            case "AC":
-                displayValue = 0
-            case "+/-":
-                displayValue *= (-1)
-            case "%":
-                displayValue *= 0.01
-            case "÷":
-                print("÷")
-            case "×":
-                print("x")
-            case "-":
-                print("-")
-            case "+":
-                print("+")
-            case "=":
-                print("=")
-            default:
-                print(LocalizedError.self)
+            let calculator = CalculatorLogic(number: displayValue)
+            
+            guard let result = calculator.calculate(symbol: calcMethod) else {
+                fatalError("The result of the calculation is nil")
             }
+            
+            displayValue = result
         }
-        
     }
 
     
