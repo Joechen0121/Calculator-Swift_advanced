@@ -10,35 +10,41 @@ import Foundation
 
 struct CalculatorLogic {
     
-    var number: Double
     
-    init(number: Double) {
+    private var number: Double?
+    
+    mutating func setNumber(_ number: Double) {
         self.number = number
     }
     
     func calculate(symbol: String) -> Double? {
         
-        switch symbol {
+        if let n = number {
             
-        case "AC":
-            return 0
-        case "+/-":
-            return number * (-1)
-        case "%":
-            return number * 0.01
-        case "÷":
-            print("÷")
-        case "×":
-            print("x")
-        case "-":
-            print("-")
-        case "+":
-            print("+")
-        case "=":
-            print("=")
-        default:
-            print(LocalizedError.self)
+            switch symbol {
+                
+            case "AC":
+                return 0
+            case "+/-":
+                return n * (-1)
+            case "%":
+                return n * 0.01
+            case "÷":
+                print("÷")
+            case "×":
+                print("x")
+            case "-":
+                print("-")
+            case "+":
+                print("+")
+            case "=":
+                print("=")
+            default:
+                print(LocalizedError.self)
+            }
+            return nil
         }
+        
         return nil
     }
 }
